@@ -10,16 +10,17 @@ const cookieHandler = {
   getAll() {
     const keys = [];
     const values = [];
-    document.cookie.split('; ').map((item) => item.split('=')).map((item) => {
+    document.cookie.split('; ').map((item) => item.split('=')).forEach((item, index) => {
       keys.push(item[0]);
       values.push(item[1]);
     });
+
     const returnObj = {};
 
     for (let i = 0; i < keys.length; i++) {
-      returnObj[keys.shift()] = values.shift();
+      returnObj[keys[i]] = values[i];
     }
-    console.log(returnObj);
+
     return returnObj;
   },
   toSessionStorage() {
